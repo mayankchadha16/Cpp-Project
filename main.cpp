@@ -16,13 +16,15 @@ int main()
     // SDL_RenderPresent(renderer);
 
     // SDL_Delay(10000);
+    const int screenWidth = 600;
+    const int screenHeight = 600;
     const int FPS = 60;
     const int frameDelay = 1000 / FPS;
     long long frameStart;
     int frameTime;
     Game *game = new Game(); //Game*game
 
-    game->init("Maynk", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+    game->init("Maynk", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, false);
     while (game->running())
     {
         frameStart = SDL_GetTicks();

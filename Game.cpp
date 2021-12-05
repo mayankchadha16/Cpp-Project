@@ -12,6 +12,8 @@ GameObject *background;
 Game::Game() {}
 void Game::init(const char *title, int x, int y, int width, int height, bool fullscreen)
 {
+    windowWidth = width;
+    windowHeight = height;
     int flags = 0;
     if (fullscreen)
         flags = SDL_WINDOW_FULLSCREEN;

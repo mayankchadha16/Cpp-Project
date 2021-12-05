@@ -30,7 +30,12 @@ void GameObject::update(int descw, int desch)
     descRect.h = desch;
 }
 
-void GameObject::Render()
+void GameObject::Render(bool flipFlag)
 {
-    SDL_RenderCopy(renderer, objTexture, &srcRect, &descRect);
+    if(flipFlag) {
+        SDL_RenderCopyEx(renderer, objTexture, &srcRect, &descRect, 0, NULL, SDL_FLIP_HORIZONTAL);
+    }
+    else {
+        SDL_RenderCopy(renderer, objTexture, &srcRect, &descRect);
+    }
 }

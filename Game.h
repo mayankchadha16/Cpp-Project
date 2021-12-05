@@ -10,6 +10,8 @@ class Game
         int cnt = 0;
         bool isRunning;
         SDL_Window *window;
+        int windowWidth;
+        int windowHeight;
 
     public:
         SDL_Renderer *renderer;

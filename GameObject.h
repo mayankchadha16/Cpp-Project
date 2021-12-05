@@ -10,7 +10,7 @@ public:
     ~GameObject();
 
     void update(int,int);
-    void Render();
+    void Render(bool flipFlag = false);
 
 protected:
     int xpos, ypos;

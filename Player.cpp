@@ -76,10 +76,5 @@ void Player::Keyboard()
 
 void Player::Render()
 {
-    if(flipFlag) {
-        SDL_RenderCopyEx(GameObject::renderer, objTexture, &srcRect, &descRect, 0, NULL, SDL_FLIP_HORIZONTAL);
-    }
-    else {
-        SDL_RenderCopy(GameObject::renderer, objTexture, &srcRect, &descRect);
-    }
+    GameObject::Render(flipFlag);
 }
