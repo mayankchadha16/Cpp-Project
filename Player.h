@@ -33,4 +33,5 @@ public:
 private:
     int last_direction = RUN_RIGHT;
     int animate_type = -1;
+    bool flipFlag = false;
 };

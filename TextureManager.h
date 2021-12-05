@@ -8,5 +8,6 @@ using namespace std;
 class TextureManager
 {
 public:
+    // make a texture for an object
     static SDL_Texture *LoadTexture(const char *filename, SDL_Renderer *renderer);
 };

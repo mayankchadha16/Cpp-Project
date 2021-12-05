@@ -38,6 +38,7 @@ void Player::Keyboard()
     {
         last_direction = animate_type = RUN_LEFT;
         xpos--;
+        flipFlag = true;
     }
 
     if (currentKeyStates[SDL_SCANCODE_RIGHT])
@@ -58,34 +59,6 @@ void Player::Keyboard()
         ypos++;
     }
 
-    if (currentKeyStates[SDL_SCANCODE_RIGHT] and currentKeyStates[SDL_SCANCODE_UP])
-    {
-        last_direction = animate_type = RUN_RIGHT_UP;
-        xpos++;
-        ypos--;
-    }
-
-    if (currentKeyStates[SDL_SCANCODE_LEFT] and currentKeyStates[SDL_SCANCODE_UP])
-    {
-        last_direction = animate_type = RUN_LEFT_UP;
-        xpos--;
-        ypos--;
-    }
-
-    if (currentKeyStates[SDL_SCANCODE_RIGHT] and currentKeyStates[SDL_SCANCODE_DOWN])
-    {
-        last_direction = animate_type = RUN_RIGHT_DOWN;
-        xpos++;
-        ypos++;
-    }
-
-    if (currentKeyStates[SDL_SCANCODE_LEFT] and currentKeyStates[SDL_SCANCODE_DOWN])
-    {
-        last_direction = animate_type = RUN_LEFT_DOWN;
-        xpos--;
-        ypos++;
-    }
-
     if (!currentKeyStates[SDL_SCANCODE_RIGHT] && !currentKeyStates[SDL_SCANCODE_LEFT] && !currentKeyStates[SDL_SCANCODE_DOWN] && !currentKeyStates[SDL_SCANCODE_UP])
     {
         animate_type = IDLE;
@@ -102,43 +75,10 @@ void Player::Keyboard()
 
 void Player::Render()
 {
-    switch (animate_type)
-    {
-    case IDLE:
-
-        switch (last_direction)
-        {
-        case RUN_RIGHT:
-            SDL_RenderCopy(GameObject::renderer, objTexture, &srcRect, &descRect);
-            break;
-
-        case RUN_LEFT:
-            SDL_RenderCopyEx(GameObject::renderer, objTexture, &srcRect, &descRect, 0, NULL, SDL_FLIP_HORIZONTAL);
-            break;
-
-        case RUN_UP:
-            SDL_RenderCopy(GameObject::renderer, objTexture, &srcRect, &descRect);
-            break;
-
-        case RUN_DOWN:
-            SDL_RenderCopy(GameObject::renderer, objTexture, &srcRect, &descRect);
-            break;
-
-        case RUN_LEFT_DOWN:
-            SDL_RenderCopyEx(GameObject::renderer, objTexture, &srcRect, &descRect, 0, NULL, SDL_FLIP_HORIZONTAL);
-            break;
-
-        case RUN_RIGHT_DOWN:
-            SDL_RenderCopy(GameObject::renderer, objTexture, &srcRect, &descRect);
-            break;
-
-        case RUN_LEFT_UP:
-            SDL_RenderCopyEx(GameObject::renderer, objTexture, &srcRect, &descRect, 0, NULL, SDL_FLIP_HORIZONTAL);
-            break;
-
-        case RUN_RIGHT_UP:
-            SDL_RenderCopy(GameObject::renderer, objTexture, &srcRect, &descRect);
-            break;
-        }
+    if(flipFlag) {
+        SDL_RenderCopyEx(GameObject::renderer, objTexture, &srcRect, &descRect, 0, NULL, SDL_FLIP_HORIZONTAL);
+    }
+    else {
+        SDL_RenderCopy(GameObject::renderer, objTexture, &srcRect, &descRect);
     }
 }
