@@ -37,26 +37,27 @@ void Player::Keyboard()
     if (currentKeyStates[SDL_SCANCODE_LEFT])
     {
         last_direction = animate_type = RUN_LEFT;
-        xpos--;
+        xpos -= stepSize;
         flipFlag = true;
     }
 
     if (currentKeyStates[SDL_SCANCODE_RIGHT])
     {
         last_direction = animate_type = RUN_RIGHT;
-        xpos++;
+        xpos += stepSize;
+        flipFlag = false;
     }
 
     if (currentKeyStates[SDL_SCANCODE_UP])
     {
         last_direction = animate_type = RUN_UP;
-        ypos--;
+        ypos -= stepSize;
     }
 
     if (currentKeyStates[SDL_SCANCODE_DOWN])
     {
         last_direction = animate_type = RUN_DOWN;
-        ypos++;
+        ypos += stepSize;
     }
 
     if (!currentKeyStates[SDL_SCANCODE_RIGHT] && !currentKeyStates[SDL_SCANCODE_LEFT] && !currentKeyStates[SDL_SCANCODE_DOWN] && !currentKeyStates[SDL_SCANCODE_UP])
