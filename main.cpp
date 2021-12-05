@@ -16,7 +16,7 @@ int main()
     // SDL_RenderPresent(renderer);
 
     // SDL_Delay(10000);
-    const int screenWidth = 600;
+    const int screenWidth = 800;
     const int screenHeight = 600;
     const int FPS = 60;
     const int frameDelay = 1000 / FPS;
