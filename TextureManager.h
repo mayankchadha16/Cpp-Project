@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h> //
 #include <SDL2/SDL_image.h>
 #include <string>   // sarthak
-#include <vector>   // sarthak
+#include <utility>   // sarthak
 using namespace std;
 
 class TextureManager
@@ -13,9 +13,6 @@ class TextureManager
         // sarthak starts
         // texture
         SDL_Texture* texture;
-
-        // stores all the textures
-        vector<SDL_Texture*> textureList;
 
         // dimensions of the whole image
         int TextWidth;
@@ -57,13 +54,16 @@ class TextureManager
         bool makeGrid(int noOfParts, int noOfRows, int noOfCols);
 
         // make the source rectangle
-        bool makeSourceRectangle(int partNumber);
+        bool makeSourceRectangle(int rowNumber, int colNumber);
 
         // destroy the texture
         void destroyTexture();
 
         // render the texture
         void render(SDL_Rect* dispRect, bool flipFlag = false);
+
+        // get rows and columns
+        pair<int, int> getRowsAndCols();
 
         // set the renderer
         static void setRenderer(SDL_Renderer* rend);

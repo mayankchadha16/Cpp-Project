@@ -46,6 +46,8 @@ bool TextureManager::loadTexture(string fName, int parts, int rows, int cols) {
         else {
             TextWidth = tempSurface->w;
             TextHeight = tempSurface->h;
+            cout << "TextWidth = " << TextWidth << endl;
+            cout << "TextHeight = " << TextHeight << endl;
         }
 
         // destroy temp surface
@@ -66,17 +68,17 @@ bool TextureManager::makeGrid(int noOfParts, int noOfRows, int noOfCols) {
     SrcWidth = TextWidth/cols;
     SrcHeight = TextHeight/rows;
 
-    return makeSourceRectangle(0);
+    return makeSourceRectangle(0, 0);
 }
 
 // get row and col number given part number
-bool TextureManager::makeSourceRectangle(int partNumber) {
+bool TextureManager::makeSourceRectangle(int rowN, int colN) {
     // rowNumber of the grid
-    int rowNumber = partNumber/cols;
-    int colNumber = partNumber%cols;
+    int rowNumber = rowN;
+    int colNumber = colN;
 
     // source rectangle
-    srcRect = {rowNumber*SrcHeight, colNumber*SrcWidth, SrcWidth, SrcHeight};
+    srcRect = {colNumber*SrcWidth, rowNumber*SrcHeight, SrcWidth, SrcHeight};
 
     return true;
 }
@@ -100,6 +102,11 @@ void TextureManager::render(SDL_Rect* destRect, bool flipFlag) {
     else {
         SDL_RenderCopy(renderer, texture, &srcRect, destRect);
     }
+}
+
+// return rows and cols
+pair<int, int> TextureManager::getRowsAndCols() {
+    return make_pair(rows, cols);
 }
 
 // set the renderer

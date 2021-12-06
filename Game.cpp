@@ -44,7 +44,7 @@ void Game::init(const char *title, int x, int y, int width, int height, bool ful
     TextureManager::setRenderer(renderer); // sarthak
     background = new GameObject("Background.png", renderer, 0, 0, windowWidth, windowHeight, 1, 1, 1); // last two args by sarthak
     enemy = new GameObject("Badass.png", renderer, 720, 295, 50, 50, 1, 1, 1); // last two args by sarthak
-    player = new Player("Character1SpritesIdle.png", renderer, 7, 270, 50, 50, 16, 4, 4); // last two args by sarthak
+    player = new Player("Character1SpritesIdle.png", renderer, 7, 270, 43, 53, 16, 2, 4); // last two args by sarthak
 }
 
 void Game::handleEvents()

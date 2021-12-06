@@ -12,9 +12,12 @@ Player::Player(const char *texturesheet, SDL_Renderer *ren, int x, int y, int w,
 
 void Player::update()
 {
+    colControl = (colControl == (animationControl*4 - 1) ? 0 : colControl + 1);
+    colNo = colControl/animationControl;
     Keyboard();
     // sarthak starts
     updateDestRect();
+    Texture->makeSourceRectangle(rowNo, colNo);
     // sarthak ends
 }
 
@@ -27,6 +30,7 @@ void Player::Keyboard()
         last_direction = animate_type = RUN_LEFT;
         xpos -= stepSize;
         flipFlag = true;
+        rowNo = 1;
     }
 
     if (currentKeyStates[SDL_SCANCODE_RIGHT])
@@ -34,6 +38,7 @@ void Player::Keyboard()
         last_direction = animate_type = RUN_RIGHT;
         xpos += stepSize;
         flipFlag = false;
+        rowNo = 1;
     }
 
     if (currentKeyStates[SDL_SCANCODE_UP])
@@ -51,6 +56,7 @@ void Player::Keyboard()
     if (!currentKeyStates[SDL_SCANCODE_RIGHT] && !currentKeyStates[SDL_SCANCODE_LEFT] && !currentKeyStates[SDL_SCANCODE_DOWN] && !currentKeyStates[SDL_SCANCODE_UP])
     {
         animate_type = IDLE;
+        rowNo = 0;
     }
     if (xpos < 0)
         xpos = 0;

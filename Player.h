@@ -21,53 +21,53 @@ enum animation_type
     RUN_RIGHT_DOWN
 };
 
-// // sarthak starts
-// enum idlePictureNumber {
-//     FRONT_STRAIGHT_1,
-//     FRONT_STRAIGHT_2,
-//     FRONT_STRAIGHT_3,
-//     FRONT_STRAIGHT_4,
-//     FRONT_RIGHT_1,
-//     FRONT_RIGHT_2,
-//     FRONT_RIGHT_3,
-//     FRONT_RIGHT_4,
-//     BACK_STRAIGHT_1,
-//     BACK_STRAIGHT_2,
-//     BACK_STRAIGHT_3,
-//     BACK_STRAIGHT_4,
-//     BACK_RIGHT_1,
-//     BACK_RIGHT_2,
-//     BACK_RIGHT_3,
-//     BACK_RIGHT_4
-// };
+// sarthak starts
+enum idlePictureNumber {
+    IDLE_FRONT_STRAIGHT_1,
+    IDLE_FRONT_STRAIGHT_2,
+    IDLE_FRONT_STRAIGHT_3,
+    IDLE_FRONT_STRAIGHT_4,
+    IDLE_FRONT_RIGHT_1,
+    IDLE_FRONT_RIGHT_2,
+    IDLE_FRONT_RIGHT_3,
+    IDLE_FRONT_RIGHT_4,
+    IDLE_BACK_STRAIGHT_1,
+    IDLE_BACK_STRAIGHT_2,
+    IDLE_BACK_STRAIGHT_3,
+    IDLE_BACK_STRAIGHT_4,
+    IDLE_BACK_RIGHT_1,
+    IDLE_BACK_RIGHT_2,
+    IDLE_BACK_RIGHT_3,
+    IDLE_BACK_RIGHT_4
+};
 
-// enum walkPictureNumber {
-//     FRONT_STRAIGHT_1,
-//     FRONT_STRAIGHT_2,
-//     FRONT_STRAIGHT_3,
-//     FRONT_STRAIGHT_4,
-//     FRONT_STRAIGHT_5,
-//     FRONT_STRAIGHT_6,
-//     FRONT_RIGHT_1,
-//     FRONT_RIGHT_2,
-//     FRONT_RIGHT_3,
-//     FRONT_RIGHT_4,
-//     FRONT_RIGHT_5,
-//     FRONT_RIGHT_6,
-//     BACK_STRAIGHT_1,
-//     BACK_STRAIGHT_2,
-//     BACK_STRAIGHT_3,
-//     BACK_STRAIGHT_4,
-//     BACK_STRAIGHT_5,
-//     BACK_STRAIGHT_6,
-//     BACK_RIGHT_1,
-//     BACK_RIGHT_2,
-//     BACK_RIGHT_3,
-//     BACK_RIGHT_4,
-//     BACK_RIGHT_5,
-//     BACK_RIGHT_6,
-// };
-// // sarthak ends
+enum walkPictureNumber {
+    WALK_FRONT_STRAIGHT_1,
+    WALK_FRONT_STRAIGHT_2,
+    WALK_FRONT_STRAIGHT_3,
+    WALK_FRONT_STRAIGHT_4,
+    WALK_FRONT_STRAIGHT_5,
+    WALK_FRONT_STRAIGHT_6,
+    WALK_FRONT_RIGHT_1,
+    WALK_FRONT_RIGHT_2,
+    WALK_FRONT_RIGHT_3,
+    WALK_FRONT_RIGHT_4,
+    WALK_FRONT_RIGHT_5,
+    WALK_FRONT_RIGHT_6,
+    WALK_BACK_STRAIGHT_1,
+    WALK_BACK_STRAIGHT_2,
+    WALK_BACK_STRAIGHT_3,
+    WALK_BACK_STRAIGHT_4,
+    WALK_BACK_STRAIGHT_5,
+    WALK_BACK_STRAIGHT_6,
+    WALK_BACK_RIGHT_1,
+    WALK_BACK_RIGHT_2,
+    WALK_BACK_RIGHT_3,
+    WALK_BACK_RIGHT_4,
+    WALK_BACK_RIGHT_5,
+    WALK_BACK_RIGHT_6,
+};
+// sarthak ends
 
 class Player : public GameObject
 {
@@ -83,4 +83,11 @@ private:
     int animate_type = -1;
     bool flipFlag = false;
     int stepSize = 3;
+    // column number control
+    int colControl = 0, colNo = 0, animationControl = 6;
+    // row number
+    int rowNo = 0;
+
+    // walking texture
+    TextureManager* walkingTexture;
 };
