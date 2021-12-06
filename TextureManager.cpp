@@ -46,8 +46,6 @@ bool TextureManager::loadTexture(string fName, int parts, int rows, int cols) {
         else {
             TextWidth = tempSurface->w;
             TextHeight = tempSurface->h;
-            cout << "TextWidth = " << TextWidth << endl;
-            cout << "TextHeight = " << TextHeight << endl;
         }
 
         // destroy temp surface
