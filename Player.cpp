@@ -6,28 +6,16 @@
 #include <SDL2/SDL_image.h>
 using namespace std;
 
-Player::Player(const char *texturesheet, SDL_Renderer *ren, int x, int y):GameObject(texturesheet, ren,x,y)
-{
-   
-}
+// last two args by sarthak
+Player::Player(const char *texturesheet, SDL_Renderer *ren, int x, int y, int w, int h, int parts, int rows, int cols)
+:GameObject(texturesheet, ren, x, y, w, h, parts, rows, cols) {}
 
-void Player::update(int descw, int desch)
+void Player::update()
 {
     Keyboard();
-    // dest_rect.x = xpos;
-    // dest_rect.y = ypos;
-    // xpos++;
-    // ypos++;
-    srcRect.h = 820;
-    srcRect.w = 820;
-
-    srcRect.x = 0;
-    srcRect.y = 0;
-
-    descRect.x = xpos;
-    descRect.y = ypos;
-    descRect.w = descw;
-    descRect.h = desch;
+    // sarthak starts
+    updateDestRect();
+    // sarthak ends
 }
 
 void Player::Keyboard()

@@ -5,37 +5,38 @@
 #include <SDL2/SDL_image.h>
 using namespace std;
 
-GameObject::GameObject(const char *texturesheet, SDL_Renderer *ren, int x, int y)
+GameObject::GameObject(const char *texturesheet, SDL_Renderer *ren, int x, int y, int w, int h, int parts, int rows, int cols) // last five args by sarthak
 {
-    renderer = ren;
-    objTexture = TextureManager::LoadTexture(texturesheet, ren);
-
     xpos = x;
     ypos = y;
+
+    // sarthak starts
+    Texture = new TextureManager();
+    Texture->loadTexture(texturesheet, parts, rows, cols);
+    width = w;
+    height = h;
+    // make the destination rectangle
+    destRect = {xpos, ypos, width, height};
+    // sarthak ends
 }
 
-void GameObject::update(int descw, int desch)
+void GameObject::update()
 {
-    // xpos++;
-    // ypos++;
-    srcRect.h = 820;
-    srcRect.w = 820;
-
-    srcRect.x = 0;
-    srcRect.y = 0;
-
-    descRect.x = xpos;
-    descRect.y = ypos;
-    descRect.w = descw;
-    descRect.h = desch;
+    // sarthak starts
+    updateDestRect();
+    // sarthak ends
 }
 
 void GameObject::Render(bool flipFlag)
 {
-    if(flipFlag) {
-        SDL_RenderCopyEx(renderer, objTexture, &srcRect, &descRect, 0, NULL, SDL_FLIP_HORIZONTAL);
-    }
-    else {
-        SDL_RenderCopy(renderer, objTexture, &srcRect, &descRect);
-    }
+    // sarthak starts
+    Texture->render(&destRect, flipFlag);
+    // sarthak ends
 }
+
+// sarthak starts
+void GameObject::updateDestRect() {
+    destRect.x = xpos;
+    destRect.y = ypos;
+}
+// sarthak ends

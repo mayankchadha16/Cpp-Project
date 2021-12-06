@@ -41,9 +41,10 @@ void Game::init(const char *title, int x, int y, int width, int height, bool ful
     }
     else
         isRunning = false;
-    background = new GameObject("Background.png", renderer, 0, 0);
-    enemy = new GameObject("Badass.png", renderer, 720, 295);
-    player = new Player("image.png", renderer, 7, 270);
+    TextureManager::setRenderer(renderer); // sarthak
+    background = new GameObject("Background.png", renderer, 0, 0, windowWidth, windowHeight, 1, 1, 1); // last two args by sarthak
+    enemy = new GameObject("Badass.png", renderer, 720, 295, 50, 50, 1, 1, 1); // last two args by sarthak
+    player = new Player("Character1SpritesIdle.png", renderer, 7, 270, 50, 50, 16, 4, 4); // last two args by sarthak
 }
 
 void Game::handleEvents()
@@ -80,7 +81,7 @@ void Game::clean()
 
 void Game::update()
 {
-    background->update(800, 600);
-    enemy->update(72, 72);
-    player->update(72, 72);
+    background->update();
+    enemy->update();
+    player->update();
 }

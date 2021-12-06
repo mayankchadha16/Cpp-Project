@@ -24,6 +24,7 @@ int main()
     int frameTime;
     Game *game = new Game(); //Game*game
 
+    // title, title_xcoord, title_ycoord, screenWidth, screenHeight, fullscreen
     game->init("Maynk", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, false);
     while (game->running())
     {
