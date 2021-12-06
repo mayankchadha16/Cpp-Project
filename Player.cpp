@@ -12,7 +12,7 @@ Player::Player(const char *texturesheet, SDL_Renderer *ren, int x, int y, int w,
 
 void Player::update()
 {
-    colControl = (colControl == (animationControl*4 - 1) ? 0 : colControl + 1);
+    colControl = (colControl == (animationControl*6 - 1) ? 0 : colControl + 1);
     colNo = colControl/animationControl;
     Keyboard();
     // sarthak starts
@@ -30,7 +30,7 @@ void Player::Keyboard()
         last_direction = animate_type = RUN_LEFT;
         xpos -= stepSize;
         flipFlag = true;
-        rowNo = 1;
+        rowLeftFlag = 1;
     }
 
     if (currentKeyStates[SDL_SCANCODE_RIGHT])
@@ -38,25 +38,28 @@ void Player::Keyboard()
         last_direction = animate_type = RUN_RIGHT;
         xpos += stepSize;
         flipFlag = false;
-        rowNo = 1;
+        rowLeftFlag = 1;
     }
 
     if (currentKeyStates[SDL_SCANCODE_UP])
     {
         last_direction = animate_type = RUN_UP;
         ypos -= stepSize;
+        rowUpFlag = 1;
     }
 
     if (currentKeyStates[SDL_SCANCODE_DOWN])
     {
         last_direction = animate_type = RUN_DOWN;
         ypos += stepSize;
+        rowUpFlag = 0;
     }
 
     if (!currentKeyStates[SDL_SCANCODE_RIGHT] && !currentKeyStates[SDL_SCANCODE_LEFT] && !currentKeyStates[SDL_SCANCODE_DOWN] && !currentKeyStates[SDL_SCANCODE_UP])
     {
         animate_type = IDLE;
-        rowNo = 0;
+        rowLeftFlag = 0;
+        rowUpFlag = 0;
     }
     if (xpos < 0)
         xpos = 0;
@@ -66,6 +69,8 @@ void Player::Keyboard()
         ypos = 0;
     else if (ypos > 800)
         ypos = 800;
+    
+    rowNo = 2*rowUpFlag + rowLeftFlag;
 }
 
 void Player::Render()

@@ -85,8 +85,8 @@ private:
     int stepSize = 3;
     // column number control
     int colControl = 0, colNo = 0, animationControl = 6;
-    // row number
-    int rowNo = 0;
+    // row number control
+    int rowNo = 0, rowLeftFlag = 0, rowUpFlag = 0;
 
     // walking texture
     TextureManager* walkingTexture;
