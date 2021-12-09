@@ -51,10 +51,16 @@ void Game::handleEvents()
 {
     SDL_Event event;
     SDL_PollEvent(&event);
+    const Uint8* keyState = SDL_GetKeyboardState(NULL);
     switch (event.type)
     {
     case SDL_QUIT:
         isRunning = false;
+        break;
+
+    case SDL_KEYDOWN:
+        if(keyState[SDL_SCANCODE_ESCAPE] != 0)
+            isRunning = false;
         break;
 
     default:

@@ -29,7 +29,7 @@ int main()
     Game *game = new Game(); //Game*game
     Mix_PlayMusic(backgroundSound,-1);
     // title, title_xcoord, title_ycoord, screenWidth, screenHeight, fullscreen
-    game->init("Maynk", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, false);
+    game->init("Maynk", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, true);
     while (game->running())
     {
         frameStart = SDL_GetTicks();
