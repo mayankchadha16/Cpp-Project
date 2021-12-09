@@ -12,6 +12,7 @@ Player::Player(const char *texturesheet, SDL_Renderer *ren, int x, int y, int w,
 
 void Player::update()
 {
+    // updates column in every frame
     colControl = (colControl == (animationControl*6 - 1) ? 0 : colControl + 1);
     colNo = colControl/animationControl;
     Keyboard();
