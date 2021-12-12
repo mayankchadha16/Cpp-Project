@@ -60,7 +60,8 @@ class TextureManager
         void destroyTexture();
 
         // render the texture
-        void render(SDL_Rect* dispRect, bool flipFlag = false);
+        void render(SDL_Rect* destRect, bool flipFlag = false);
+        void render(SDL_Rect* destRect, SDL_Rect* srcRect, bool flipFlag = false);
 
         // get rows and columns
         pair<int, int> getRowsAndCols();

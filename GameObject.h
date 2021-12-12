@@ -7,7 +7,7 @@
 class GameObject
 {
 public:
-    GameObject(const char *texturesheet, SDL_Renderer *ren, int x, int y, int w, int h, int parts, int rows, int cols);
+    GameObject(const char *texturesheet, int x, int y, int w, int h, int parts, int rows, int cols);
     ~GameObject();
 
     void update();
@@ -19,15 +19,13 @@ public:
 
 protected:
     int xpos, ypos;
-    SDL_Texture *objTexture;
-    SDL_Rect srcRect, descRect;
-    SDL_Renderer *renderer;
-
-
     // sarthak starts
     TextureManager* Texture;
     int width , height;
     // is null if we don't clip, specifies the dest rect
     SDL_Rect destRect;
+    // stepSize
+    int stepSize = 3;
+    // camera control
     // sarthak ends
 };

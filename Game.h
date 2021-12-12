@@ -20,6 +20,7 @@ class Game
 
         void init(const char *title, int x, int y, int width, int height, bool fullscreen);
         void handleEvents();
+        void handleKeyDownEvents();
         void update();
         void render();
         void clean();

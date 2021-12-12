@@ -6,6 +6,7 @@
 #include "TextureManager.h"
 #include <SDL2/SDL.h> //
 #include <SDL2/SDL_image.h>
+#include <utility>
 using namespace std;
 
 enum animation_type
@@ -72,22 +73,26 @@ enum walkPictureNumber {
 class Player : public GameObject
 {
 public:
-    Player(const char *, SDL_Renderer *, int x, int y, int w, int h, int parts, int rows, int cols); // last two args by sarthak
+    Player(const char *, int x, int y, int w, int h, int parts, int rows, int cols); // last two args by sarthak
     ~Player();
     void update();
     void Render();
-    void Keyboard();
+    // get coordinates
+    pair<int, int> GetCoords();
+    // set flipflag
+    void setFlipFlag(bool);
+    // get flipFlag
+    bool getFlipFlag();
+    // set rowControl
+    void setRowControl(int leftFlag, int upFlag);
+    // return flags
+    pair<int, int> getFlags();
 
 private:
-    int last_direction = RUN_RIGHT;
-    int animate_type = -1;
     bool flipFlag = false;
     int stepSize = 3;
     // column number control
     int colControl = 0, colNo = 0, animationControl = 6;
     // row number control
     int rowNo = 0, rowLeftFlag = 0, rowUpFlag = 0;
-
-    // walking texture
-    TextureManager* walkingTexture;
 };

@@ -12,9 +12,9 @@ int main(int argc, char* argv[]) {
     char nextLine = '\n';
 
     fwrite(&openBr, sizeof(char), 1, fw);
-    for(int i = 0; i < 114; i++) {
+    for(int i = 0; i < 94; i++) {
         fwrite(&openBr, sizeof(char), 1, fw);
-        for(int j = 0; j < 94; j++) {
+        for(int j = 0; j < 114; j++) {
             for(int k = 0; k < 3;k++) {
                 fread(&input, sizeof(char), 1, fr);
                 fwrite(&input, sizeof(char), 1, fw);

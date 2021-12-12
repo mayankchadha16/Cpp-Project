@@ -102,6 +102,17 @@ void TextureManager::render(SDL_Rect* destRect, bool flipFlag) {
     }
 }
 
+// display the specified part of the texture
+void TextureManager::render(SDL_Rect* destRect, SDL_Rect* srcRect, bool flipFlag) {
+    // render the rect
+    if(flipFlag) {
+        SDL_RenderCopyEx(renderer, texture, srcRect, destRect, 0, NULL, SDL_FLIP_HORIZONTAL);
+    }
+    else {
+        SDL_RenderCopy(renderer, texture, srcRect, destRect);
+    }
+}
+
 // return rows and cols
 pair<int, int> TextureManager::getRowsAndCols() {
     return make_pair(rows, cols);

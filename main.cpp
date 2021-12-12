@@ -18,18 +18,18 @@ int main()
 
     // SDL_Delay(10000);
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
-    Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048);
-    Mix_Music *backgroundSound =Mix_LoadMUS("bgm.mp3");
+    // Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048);
+    // Mix_Music *backgroundSound =Mix_LoadMUS("bgm.mp3");
     const int screenWidth = 800;
-    const int screenHeight = 600;
+    const int screenHeight = 640;
     const int FPS = 60;
     const int frameDelay = 1000 / FPS;
     long long frameStart;
     int frameTime;
     Game *game = new Game(); //Game*game
-    Mix_PlayMusic(backgroundSound,-1);
+    // Mix_PlayMusic(backgroundSound,-1);
     // title, title_xcoord, title_ycoord, screenWidth, screenHeight, fullscreen
-    game->init("Maynk", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, true);
+    game->init("Maynk", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, false);
     while (game->running())
     {
         frameStart = SDL_GetTicks();
@@ -46,7 +46,7 @@ int main()
         }
     }
     game->clean();
-    Mix_FreeMusic(backgroundSound);
-    Mix_CloseAudio();
+    // Mix_FreeMusic(backgroundSound);
+    // Mix_CloseAudio();
     return 0;
 }

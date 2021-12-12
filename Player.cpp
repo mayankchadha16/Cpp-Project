@@ -7,74 +7,53 @@
 using namespace std;
 
 // last two args by sarthak
-Player::Player(const char *texturesheet, SDL_Renderer *ren, int x, int y, int w, int h, int parts, int rows, int cols)
-:GameObject(texturesheet, ren, x, y, w, h, parts, rows, cols) {}
+Player::Player(const char *texturesheet, int x, int y, int w, int h, int parts, int rows, int cols)
+:GameObject(texturesheet, x, y, w, h, parts, rows, cols) {}
 
 void Player::update()
 {
     // updates column in every frame
     colControl = (colControl == (animationControl*6 - 1) ? 0 : colControl + 1);
     colNo = colControl/animationControl;
-    Keyboard();
+    rowNo = 2*rowUpFlag + rowLeftFlag;
     // sarthak starts
     updateDestRect();
     Texture->makeSourceRectangle(rowNo, colNo);
     // sarthak ends
 }
 
-void Player::Keyboard()
-{
-    const Uint8 *currentKeyStates = SDL_GetKeyboardState(NULL);
-
-    if (currentKeyStates[SDL_SCANCODE_LEFT])
-    {
-        last_direction = animate_type = RUN_LEFT;
-        xpos -= stepSize;
-        flipFlag = true;
-        rowLeftFlag = 1;
-    }
-
-    if (currentKeyStates[SDL_SCANCODE_RIGHT])
-    {
-        last_direction = animate_type = RUN_RIGHT;
-        xpos += stepSize;
-        flipFlag = false;
-        rowLeftFlag = 1;
-    }
-
-    if (currentKeyStates[SDL_SCANCODE_UP])
-    {
-        last_direction = animate_type = RUN_UP;
-        ypos -= stepSize;
-        rowUpFlag = 1;
-    }
-
-    if (currentKeyStates[SDL_SCANCODE_DOWN])
-    {
-        last_direction = animate_type = RUN_DOWN;
-        ypos += stepSize;
-        rowUpFlag = 0;
-    }
-
-    if (!currentKeyStates[SDL_SCANCODE_RIGHT] && !currentKeyStates[SDL_SCANCODE_LEFT] && !currentKeyStates[SDL_SCANCODE_DOWN] && !currentKeyStates[SDL_SCANCODE_UP])
-    {
-        animate_type = IDLE;
-        rowLeftFlag = 0;
-        rowUpFlag = 0;
-    }
-    if (xpos < 0)
-        xpos = 0;
-    else if (xpos > 800)
-        xpos = 800;
-    if (ypos < 0)
-        ypos = 0;
-    else if (ypos > 800)
-        ypos = 800;
-    
-    rowNo = 2*rowUpFlag + rowLeftFlag;
+// set flipflag
+void Player::setFlipFlag(bool flag) {
+    flipFlag = flag;
 }
+
+// get flipFlag
+bool Player::getFlipFlag() {
+    return flipFlag;
+}
+
+// set rowControl (left, up)
+void Player::setRowControl(int leftFlag, int upFlag) {
+    rowLeftFlag = leftFlag;
+    rowUpFlag = upFlag;
+}
+
+// get flags
+pair<int, int> Player::getFlags() {
+    return make_pair(rowLeftFlag, rowUpFlag);
+}
+
+// void Player::Keyboard()
+// {
+//     rowNo = 2*rowUpFlag + rowLeftFlag;
+// }
 
 void Player::Render()
 {
     GameObject::Render(flipFlag);
+}
+
+// get coords
+pair<int, int> Player::GetCoords() {
+    return (make_pair(xpos, ypos));
 }

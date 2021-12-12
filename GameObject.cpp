@@ -5,7 +5,7 @@
 #include <SDL2/SDL_image.h>
 using namespace std;
 
-GameObject::GameObject(const char *texturesheet, SDL_Renderer *ren, int x, int y, int w, int h, int parts, int rows, int cols) // last five args by sarthak
+GameObject::GameObject(const char *texturesheet, int x, int y, int w, int h, int parts, int rows, int cols) // last five args by sarthak
 {
     xpos = x;
     ypos = y;
@@ -39,4 +39,6 @@ void GameObject::updateDestRect() {
     destRect.x = xpos;
     destRect.y = ypos;
 }
+
+GameObject::~GameObject() {}
 // sarthak ends
