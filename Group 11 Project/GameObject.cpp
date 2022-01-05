@@ -5,7 +5,7 @@
 #include <SDL2/SDL_image.h>
 using namespace std;
 
-GameObject::GameObject(const char *texturesheet, int x, int y, int w, int h, int parts, int rows, int cols) // last five args by sarthak
+GameObject::GameObject(const char *texturesheet, int x, int y, int w, int h, int parts, int rows, int cols) 
 {
     xpos = x;
     start_x = x;
