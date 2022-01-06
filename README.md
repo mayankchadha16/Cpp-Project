@@ -1,4 +1,4 @@
 # Cpp-Project
-Commands to run 
+Commands to run //
 make
 ./main
